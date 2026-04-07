@@ -1,0 +1,28 @@
+LANGUAGE: TypeScript
+PACKAGE_MANAGER: yarn install
+WORKING_COMMANDS: yarn install, yarn build
+SOURCE_DIRECTORIES: src/
+BUILD_OUTPUT: *.min.js, *.min.js.map, types/ (do NOT edit these directly)
+
+RULES:
+- ONLY edit files in SOURCE_DIRECTORIES (src/) — never edit build output directly
+- Build output is gitignored and must NOT be committed
+- Run the build command after making changes to verify they compile
+- ALWAYS write tests for your changes. If no test framework is set up, install one appropriate for the language (e.g. vitest/jest for JS/TS, pytest for Python, cargo test for Rust) and create the test file. Tests should verify the specific behavior your change introduces or fixes.
+- Run tests and make sure they pass before finishing
+- If your fix changes how users install or use the library, update the README accordingly
+- Keep changes minimal and surgical — fix only what the issue asks for
+
+KNOWN_RISKS:
+- Complex rollup build process with Google Closure Compiler - build failures may be cryptic
+- WebWorker implementation uses dynamic imports that must be handled carefully
+- jsqr-es6 dependency is imported via relative path in worker.ts - path changes will break builds
+- No existing test infrastructure - you'll need to set up testing from scratch
+- Camera access testing requires user permission and real browser environment
+
+QUIRKS:
+- Build creates multiple output variants (ES6, UMD, legacy) with different optimization levels
+- Worker script is inlined into legacy build but external for others  
+- TypeScript declarations are generated separately via tsc, not rollup
+- Demo page expects build output files to be present in root directory
+- Package.json references build output in "files" array for npm publishing

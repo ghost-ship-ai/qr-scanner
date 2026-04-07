@@ -1,5 +1,7 @@
 # QR Scanner
 
+**Maintained Fork**: This is a community-maintained fork of the original QR Scanner library.
+
 Javascript QR Code Scanner based on [Cosmo Wolfe's javascript port](https://github.com/cozmo/jsqr) of [Google's ZXing library](https://github.com/zxing/zxing).
 
 In this library, several improvements have been applied over the original port:
@@ -25,15 +27,17 @@ See [https://nimiq.github.io/qr-scanner/demo/](https://nimiq.github.io/qr-scanne
 
 ## Installation
 
-To install via npm:
+**Recommended**: Install via package manager:
+
 ```bash
 npm install --save qr-scanner
 ```
-To install via yarn:
+or
 ```bash
 yarn add qr-scanner
 ```
-Or simply copy `qr-scanner.min.js` and `qr-scanner-worker.min.js` to your project.
+
+This is the preferred installation method as it ensures you get the correct version and dependencies.
 
 ## Setup
 

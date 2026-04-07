@@ -1,3 +1,8 @@
 node_modules
 .DS_Store
 tmp
+
+# Build output - do not commit
+*.min.js
+*.min.js.map
+types/

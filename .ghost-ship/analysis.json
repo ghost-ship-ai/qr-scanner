@@ -1,0 +1,25 @@
+{
+  "language": "TypeScript",
+  "runtime": "Node.js",
+  "package_manager": "yarn",
+  "install_command": "yarn install",
+  "build_command": "yarn build",
+  "test_command": null,
+  "entry_points": {
+    "main": "qr-scanner.umd.min.js",
+    "module": "qr-scanner.min.js",
+    "types": "types/qr-scanner.d.ts"
+  },
+  "public_api_summary": "QR code scanner library with web camera support, WebWorker processing, and multiple build targets (ES6, UMD, legacy). Supports both continuous video scanning and single image scanning with native BarcodeDetector fallback.",
+  "description": "A javascript QR scanner library with webcam support, WebWorker processing, and high detection rates. Lightweight and optimized with Google Closure Compiler.",
+  "license": "MIT",
+  "upstream": "nimiq/qr-scanner",
+  "risks": [
+    "Build output (*.min.js, *.min.js.map, types/) was previously tracked in git - now properly gitignored",
+    "Complex rollup build process with closure compiler - requires proper TypeScript and rollup setup",
+    "Uses external jsqr-es6 dependency via relative path import in worker.ts", 
+    "WebWorker implementation requires careful handling of dynamic imports",
+    "No existing test suite - testing needs to be implemented from scratch"
+  ],
+  "confidence": 95
+}
