@@ -8,11 +8,6 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noEmitOnError": true
-  },
-  "exclude": [
-    "node_modules",
-    "tests",
-    "vitest.config.ts"
-  ]
+  }
 }
 
