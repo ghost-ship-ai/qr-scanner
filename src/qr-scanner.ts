@@ -977,7 +977,7 @@ class QrScanner {
             }
         }
 
-        const context = canvas.getContext('2d', { alpha: false })!;
+        const context = canvas.getContext('2d', { alpha: false, willReadFrequently: true })!;
         context.imageSmoothingEnabled = false; // gives less blurry images
         context.drawImage(
             image,
