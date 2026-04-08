@@ -1,6 +1,6 @@
 LANGUAGE: TypeScript
 PACKAGE_MANAGER: yarn install
-WORKING_COMMANDS: yarn install, yarn build
+WORKING_COMMANDS: yarn install, yarn build, yarn test
 SOURCE_DIRECTORIES: src/
 BUILD_OUTPUT: *.min.js, *.min.js.map, types/ (do NOT edit these directly)
 
@@ -9,15 +9,19 @@ RULES:
 - Build output is gitignored and must NOT be committed
 - Run the build command after making changes to verify they compile
 - ALWAYS write tests for your changes. If no test framework is set up, install one appropriate for the language (e.g. vitest/jest for JS/TS, pytest for Python, cargo test for Rust) and create the test file. Tests should verify the specific behavior your change introduces or fixes.
+- If you add a test framework or test script, update .github/workflows/ci.yml to run the tests (e.g. add a "yarn test" or "npm test" step after the build step)
 - Run tests and make sure they pass before finishing
 - If your fix changes how users install or use the library, update the README accordingly
 - Keep changes minimal and surgical — fix only what the issue asks for
+- ONLY commit files directly related to the fix — no debug scripts, temp files, or scratch code
+- Delete any files you created for debugging or testing purposes (e.g. debug-test.js, test-scratch.py) before finishing
+- Do NOT add or modify config files (vitest.config.ts, jest.config.js, tsconfig.json, .eslintrc) unless the issue specifically requires test infrastructure or config changes
+- Before finishing, run git status and remove any untracked files that are not part of the fix
 
 KNOWN_RISKS:
 - Complex rollup build process with Google Closure Compiler - build failures may be cryptic
 - WebWorker implementation uses dynamic imports that must be handled carefully
 - jsqr-es6 dependency is imported via relative path in worker.ts - path changes will break builds
-- No existing test infrastructure - you'll need to set up testing from scratch
 - Camera access testing requires user permission and real browser environment
 
 QUIRKS:
