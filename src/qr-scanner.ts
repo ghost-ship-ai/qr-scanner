@@ -182,7 +182,10 @@ class QrScanner {
             video.hidden = false;
             shouldHideVideo = true;
         }
-        if (!document.body.contains(video)) {
+        // Store the original parent to respect shadow DOM encapsulation
+        const originalParent = video.parentElement;
+        // Only move the video if it's not connected to any DOM tree (including shadow DOM)
+        if (!video.isConnected) {
             document.body.appendChild(video);
             shouldHideVideo = true;
         }
