@@ -522,6 +522,7 @@ class QrScanner {
                         if (event.data.data !== null) {
                             resolve({
                                 data: event.data.data,
+                                binaryData: event.data.binaryData,
                                 cornerPoints: QrScanner._convertPoints(event.data.cornerPoints, scanRegion),
                             });
                         } else {
@@ -558,6 +559,7 @@ class QrScanner {
                             if (!scanResult) throw QrScanner.NO_QR_CODE_FOUND;
                             return {
                                 data: scanResult.rawValue,
+                                binaryData: new Uint8Array(),
                                 cornerPoints: QrScanner._convertPoints(scanResult.cornerPoints, scanRegion),
                             };
                         } catch (e) {
@@ -1093,6 +1095,7 @@ declare namespace QrScanner {
 
     export interface ScanResult {
         data: string;
+        binaryData: Uint8Array;
         // In clockwise order, starting at top left, but this might not be guaranteed in the future.
         cornerPoints: QrScanner.Point[];
     }
