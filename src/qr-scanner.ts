@@ -580,6 +580,10 @@ class QrScanner {
                                     alsoTryWithoutScanRegion,
                                 });
                             }
+                            // Don't prefix "No QR code found" with "Scanner error:" to avoid console spam
+                            if (errorMessage === QrScanner.NO_QR_CODE_FOUND) {
+                                throw errorMessage;
+                            }
                             throw `Scanner error: ${errorMessage}`;
                         }
                     })(),
@@ -870,7 +874,8 @@ class QrScanner {
 
     private _onDecodeError(error: Error | string): void {
         // default error handler; can be overwritten in the constructor
-        if (error === QrScanner.NO_QR_CODE_FOUND) return;
+        const errorMessage = (error as Error).message || error as string;
+        if (errorMessage === QrScanner.NO_QR_CODE_FOUND) return;
         console.log(error);
     }
 
